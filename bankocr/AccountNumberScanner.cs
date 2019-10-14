@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace bankocr.test
+namespace bankocr
 {
     public class AccountNumberScanner
     {
