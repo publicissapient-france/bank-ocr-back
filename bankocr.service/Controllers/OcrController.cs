@@ -18,9 +18,9 @@ namespace bankocr.service.Controllers
         [HttpPost]
         public IActionResult Post([FromForm] IFormFile file)
         {
-            using (var fileStram = new StreamReader(file.OpenReadStream()))
+            using (var fileStream = new StreamReader(file.OpenReadStream()))
             {
-                string fileContent = fileStram.ReadToEnd();
+                string fileContent = fileStream.ReadToEnd();
 
                 AccountNumberScanner accountNumberScanner = new AccountNumberScanner();
                 string result = accountNumberScanner.Scan(fileContent);
