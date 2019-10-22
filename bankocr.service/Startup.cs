@@ -33,6 +33,7 @@ namespace bankocr.service
                     builder =>
                     {
                         builder.AllowAnyOrigin();
+                        builder.AllowAnyHeader();
                     });
                 });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
