@@ -12,6 +12,24 @@ jobs:
     steps:
       - checkout
       - run: echo test
+  package:
+    docker:
+      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
+    steps:
+      - checkout
+      - run: echo package
+  publish:
+    docker:
+      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
+    steps:
+      - checkout
+      - run: echo publish
+  deploy:
+    docker:
+      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
+    steps:
+      - checkout
+      - run: echo deploy
 
 workflows:
   version: 2
@@ -19,3 +37,6 @@ workflows:
     jobs:
       - "build"
       - "test"
+      - "package"
+      - "publish"
+      - "deploy"
