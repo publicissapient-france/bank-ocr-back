@@ -2,31 +2,31 @@ version: 2
 jobs:
   build:
     docker:
-      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
+      - image: alpine 
     steps:
       - checkout
       - run: echo build
   test:
     docker:
-      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
+      - image: alpine
     steps:
       - checkout
       - run: echo test
   package:
     docker:
-      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
+      - image: alpine
     steps:
       - checkout
       - run: echo package
   publish:
     docker:
-      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
+      - image: alpine
     steps:
       - checkout
       - run: echo publish
   deploy:
     docker:
-      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
+      - image: alpine 
     steps:
       - checkout
       - run: echo deploy
@@ -35,8 +35,16 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - "build"
-      - "test"
-      - "package"
-      - "publish"
-      - "deploy"
+      - build
+      - test:
+          requires:
+            - build
+      - package:
+          requires:
+            - test
+      - publish:
+          requires:
+            - package
+      - deploy:
+          requires:
+            - publish
