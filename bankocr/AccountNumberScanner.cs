@@ -23,9 +23,11 @@ namespace bankocr
 
         public string Scan(string encodedAccountNumber)
         {
-            if (encodedAccountNumber.Length >= 9)
+            if (encodedAccountNumber.Length >= 9) 
+            {
                 return numberCodes[ExtractFirstNumberCode(encodedAccountNumber)]
-                    + Scan(ExtractPendingNumbersCode(encodedAccountNumber));            
+                    + Scan(ExtractPendingNumbersCode(encodedAccountNumber));
+            }
             return string.Empty; 
         }
 
