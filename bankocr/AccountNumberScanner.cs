@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace bankocr
@@ -24,8 +25,15 @@ namespace bankocr
         public string Scan(string encodedAccountNumber)
         {
             if (encodedAccountNumber.Length >= 9)
-                return numberCodes[ExtractFirstNumberCode(encodedAccountNumber)]
-                    + Scan(ExtractPendingNumbersCode(encodedAccountNumber));            
+            {
+                string character = ExtractFirstNumberCode(encodedAccountNumber);
+                if(numberCodes.ContainsKey(character))
+                {
+                    return numberCodes[character]
+                        + Scan(ExtractPendingNumbersCode(encodedAccountNumber));
+                }
+                return "?" + Scan(ExtractPendingNumbersCode(encodedAccountNumber));
+            }
             return string.Empty; 
         }
 
