@@ -95,6 +95,24 @@ namespace bankocr.test
             //Then
             Assert.Equal("444444444", actual);
         }
+
+        [Fact]
+        public void should_replace_illegal_characters_and_return_account_number_for_123__6789()
+        {
+            //Given
+            string encodedAccountNumber = 
+             "    _  _     _  _  _  _  _ \n" 
+            +"  | _| _|| ||  |_   ||_||_|\n"
+            +"  ||_  _|  | _||_|  ||_| _|";
+
+            AccountNumberScanner accountNumberScanner = new AccountNumberScanner();
+
+            //When
+            string actual = accountNumberScanner.Scan(encodedAccountNumber);
+
+            //Then
+            Assert.Equal("123??6789", actual);
+        }
     }
 
 

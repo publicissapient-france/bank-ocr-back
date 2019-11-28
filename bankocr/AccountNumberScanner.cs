@@ -25,7 +25,14 @@ namespace bankocr
         {
             if (encodedAccountNumber.Length >= 9) 
             {
-                return numberCodes[ExtractFirstNumberCode(encodedAccountNumber)]
+
+                string firstNumber = ExtractFirstNumberCode(encodedAccountNumber);
+                if(numberCodes.ContainsKey(firstNumber))
+                {
+                    return numberCodes[firstNumber]
+                    + Scan(ExtractPendingNumbersCode(encodedAccountNumber));
+                }
+                return "?"
                     + Scan(ExtractPendingNumbersCode(encodedAccountNumber));
             }
             return string.Empty; 
